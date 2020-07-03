@@ -1,7 +1,10 @@
 <%- include("header") -%>
 
 <div class="box" id="heading">
+
   <h1><%= listTitle%> </h1>
+
+  <h3>Current Time<div id="clock"></div></h3>
 </div>
 
 <div class="box">
@@ -9,7 +12,9 @@
   <form class="" action="/delete" method="post">
     <div class="item">
       <input type="checkbox" onChange="this.form.submit()" value="<%=newItems._id%>" name="checkbox" ">
-      <p><%= newItems.name;%></p>
+      <p><%= newItems.name;%></p><div class="time">
+        <%=newItems.time;%>
+      </div>
     </div>
     <input type="hidden" name="listName" value="<%= listTitle%>"></input>
   </form>
@@ -21,5 +26,24 @@
     <button type="submit" name="list" value="<%= listTitle%>">+</button>
   </form>
 </div>
+
+<script>
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('clock').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+// add zero in front of numbers < 10
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};
+  return i;
+}
+</script>
 
 <%- include("footer") -%>

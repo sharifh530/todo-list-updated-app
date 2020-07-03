@@ -1,5 +1,7 @@
 exports.getDate = getdate;
 exports.getDay = getDay;
+exports.getTime = getTime;
+
 
 function getdate() {
   let today = new Date();
@@ -25,4 +27,9 @@ function getDay() {
   let day = today.toLocaleDateString("en-us", options);
 
   return day;
+}
+
+function getTime(){
+   time = new Date().toLocaleTimeString();
+   return time;
 }

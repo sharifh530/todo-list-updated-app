@@ -18,7 +18,8 @@ mongoose.connect("mongodb+srv://admin-sazzad:sharif006@cluster0.zfbll.mongodb.ne
 });
 
 const itemsSchema = {
-  name: String
+  name: String,
+  time: String
 };
 
 const listSchema = {
@@ -34,12 +35,13 @@ const item1 = new Item({
   name: "Coding"
 });
 
-item1.save();
+// item1.save();
 
 
 const defaultItems = [];
 
 let day = date.getDate();
+let time;
 
 app.get("/", function(req, res) {
 
@@ -60,6 +62,7 @@ app.get("/", function(req, res) {
       } else {
         res.render("list", {
           listTitle: day,
+          time: time,
           newItems: foundItems
         });
       };
@@ -73,9 +76,11 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res) {
   let itemName = req.body.newItem;
   let listName = req.body.list;
+  let time = new Date().toLocaleTimeString();
 
   const item = new Item({
-    name: itemName
+    name: itemName,
+    time: time
   });
   if (listName === day) {
     item.save();
@@ -154,7 +159,6 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
 }
-app.listen(port);
 
 app.listen(port, function() {
   console.log("Server has started on sever 3000");

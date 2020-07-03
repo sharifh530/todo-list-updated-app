@@ -7,7 +7,7 @@ html {
 
 h1 {
   color: #fff;
-  padding: 10px;
+  padding-top: 5px;
 }
 
 .box {
@@ -93,4 +93,13 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+h3{
+  padding-bottom: 6px;
+}
+
+.time{
+  position: absolute;
+  right:  500px;
 }
